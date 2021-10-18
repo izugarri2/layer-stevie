@@ -1,53 +1,18 @@
 name: Deploy to Layer0
-on: [push]
+
+on:
+  workflow_dispatch:
+
 jobs:
   deploy-to-layer0:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')" >> $GITHUB_ENV
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Cache node modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          registry-url: https://npm-proxy.fury.io/moovweb/
       - run: npm ci
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Sync guides to latest version path
-        if: github.ref == 'refs/heads/master'
-        run: |
-          mkdir s3
-          aws s3 sync s3://layer0-docs ./s3  --delete
-          cd s3
-          VERSION=$(tail -n 1 versions.csv)
-          cp -r ../guides ${VERSION}
-          cp -r ../guides current
-          cp ../guides/guides.json ${VERSION}/guides.json
-          cp ../guides/guides.json current/guides.json
-          aws s3 sync . s3://layer0-docs --delete
-      - name: Deploy to Layer0
-        run: npm run deploy -- --branch=$BRANCH_NAME --token=${{secrets.layer0_deploy_token}} ${{env.BRANCH_NAME == 'master' && '--environment=production' || '--environment=default'}}
-      - name: Crawl Docs
-        if: github.ref == 'refs/heads/master'
-        run: |
-          docker run \
-          -e APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }} \
-          -e API_KEY=${{ secrets.ALGOLIA_API_KEY }} \
-          -e CONFIG="$(cat ./docs.config.json | jq -r tostring)" \
-          algolia/docsearch-scraper
+      - run: npm run deploy -- --token=$LAYER0_DEPLOY_TOKEN
+        env:
+          LAYER0_DEPLOY_TOKEN: ${{secrets.LAYER0_DEPLOY_TOKEN}}
