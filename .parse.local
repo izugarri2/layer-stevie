@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "wonder"
+    },
+    "wonder": {
+      "applicationId": "pQTmfh2F3nuSUJdMKH4RHyQOd8BLgJKjR23kAGNF"
+    }
+  }
+}
