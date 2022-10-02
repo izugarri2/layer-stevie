@@ -1,0 +1,3 @@
+Options +FollowSymLinksRewriteEngine onErrorDocument 404 http://www.steviewonder.es/paginadeerror.htmlRewriteCond %{HTTP_HOST} ^steviewonder.es [NC]RewriteRule (.*) http://www.steviewonder.es/$1 [R=301,L,QSA]
+
+
