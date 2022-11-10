@@ -24,7 +24,7 @@
     "@layer0/cli": "^3.17.7",
     "@layer0/core": "^3.17.7",
     "@layer0/devtools": "^3.17.7",
-    "@layer0/prefetch": "^3.17.7",
+    "@layer0/prefetch": "^3.19.0",
     "prettier": "^2.4.1"
   },
   "browserslist": {
