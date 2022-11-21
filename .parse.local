@@ -1,10 +1,10 @@
 {
   "applications": {
     "_default": {
-      "link": "wonder"
+      "link": "steviewonder"
     },
-    "wonder": {
-      "applicationId": "pQTmfh2F3nuSUJdMKH4RHyQOd8BLgJKjR23kAGNF"
+    "steviewonder": {
+      "applicationId": "ZVN7wkwxIIveM4PQKtgpDh0YDhVftQEFHsF7gSEs"
     }
   }
 }
