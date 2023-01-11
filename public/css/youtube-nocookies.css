@@ -36,7 +36,7 @@ div.youtube-play {
    margin-top: -36px;
    opacity:0.7;
    position: absolute; 
-   background:   url("//www.steviewonder.es/IMAGENES/youtube-64.png") no-repeat; 
+   background:   url("//videos.videomusica.es/IMAGENES/youtube-64.png") no-repeat; 
 }
 div.youtube-play:hover{
    opacity:1; 
