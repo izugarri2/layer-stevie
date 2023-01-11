@@ -52,5 +52,5 @@ export const IMAGE_CACHE_HANDLER = ({ cache, proxy }) => {
       serviceWorkerSeconds: 60 * 60 * 24,
     },
   })
-
+  proxy('image', { path: '/' })
 }
