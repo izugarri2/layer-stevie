@@ -28,7 +28,7 @@ module.exports = new Router()
     cache(edgeOnly)
     appShell('public/index.html')
   })
-  .match('en/:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
+  .match('/:path*/en/:file([^\\.]+|)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
   })
