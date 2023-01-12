@@ -35,7 +35,7 @@ module.exports = new Router()
 
   .match('/:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
     cache(edgeOnly)
-    appShell('public/404.html')
+    appShell('public/index.html')
   })
     
   // match other assets such as favicon, manifest.json, etc
