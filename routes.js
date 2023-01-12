@@ -28,6 +28,10 @@ module.exports = new Router()
     cache(edgeOnly)
     appShell('public/index.html')
   })
+  .match('en/:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
+    cache(edgeOnly)
+    appShell('public/en/index.html')
+  })
   
   // match other assets such as favicon, manifest.json, etc
   .match('/:path*', ({ serveStatic, cache }) => {
@@ -35,4 +39,4 @@ module.exports = new Router()
    serveStatic('public/:path*')
   })
   // send any unmatched request to serve the static index.html
-  .fallback(({ serveStatic }) => serveStatic('public/index.html'))
+  .fallback(({ serveStatic }) => serveStatic('public/404.html'))
