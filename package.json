@@ -6,7 +6,7 @@
     "deploy": "edgio deploy",
     "start": "node ./bin/www"
   },
-  "name": "edgio-express-example",
+  "name": "edgio-stevie",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
