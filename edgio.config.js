@@ -1,22 +1,20 @@
-// This file was automatically added by edgio deploy.
-// You should commit this file to source control.
 module.exports = {
-  connector: '@edgio/express',
-  express: {
-    // The main entry point(s) for your app, which exports an instance of express app.
-    // This file and its dependencies will be bundled into a single file for serverless deployment.
-    //
-    // If omitted, Edgio will try to find an entrypoint in one of the following files:
-    // - ./src/server.ts
-    // - ./src/server.js
-    // - ./src/app.ts
-    // - ./src/app.js
-    // - ./src/index.ts
-    // - ./src/index.js
-    // - ./app.js
-    // - ./index.js
-    //
-    // Uncomment the line below to specify the path to the entry point(s):
-    // entryPoints: ['./src/app.js']
+  connector: '@edgio/react-cra',
+  backends: {
+    // Define a domain or IP address to proxy as a backend
+    // More on: https://docs.layer0.co/guides/layer0_config#backends
+    api: {
+      domainOrIp: 'layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link',
+      hostHeader: 'layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link',
+      // Disable backend SSL certificate security check, read more on:
+      // https://docs.layer0.co/guides/layer0_config#:~:text=browser%20is%20used.-,disableCheckCert,-Boolean
+      disableCheckCert: true,
+    },
+    // More on: https://docs.layer0.co/guides/image_optimization
+    image: {
+      domainOrIp: 'opt.moovweb.net',
+      hostHeader: 'opt.moovweb.net',
+      disableCheckCert: true,
+    },
   },
 }
