@@ -1,5 +1,5 @@
 {
-  "name": "layer-stevie",
+  "name": "layer-simply",
   "scripts": {
     "edgio:dev": "edgio dev",
     "edgio:build": "edgio build",
