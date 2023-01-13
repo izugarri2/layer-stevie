@@ -24,17 +24,17 @@ module.exports = new Router()
   // match client-side routes that aren't a static asset
   // and serve the app shell. client-side router will
   // handle the route once it is rendered
+ .match('/en:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
+    cache(edgeOnly)
+    appShell('public/en/index.html')
+  })
 
 .match('en/:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
   })
 
-  .match('/en:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
-    cache(edgeOnly)
-    appShell('public/index.html')
-  })
-// match other assets such as favicon, manifest.json, etc
+ // match other assets such as favicon, manifest.json, etc
   .match('/:path*', ({ serveStatic, cache }) => {
   
    serveStatic('public/:path*')
