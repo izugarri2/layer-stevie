@@ -25,7 +25,7 @@ module.exports = new Router()
   // and serve the app shell. client-side router will
   // handle the route once it is rendered
 
-.match('/en:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
+.match('/en:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
   })
@@ -38,5 +38,6 @@ module.exports = new Router()
   .match('/:path*', ({ serveStatic, cache }) => {
   
    serveStatic('public/:path*')
+})
   // send any unmatched request to serve the static index.html
   .fallback(({ serveStatic }) => serveStatic('public/404.html'))
