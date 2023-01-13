@@ -24,7 +24,7 @@ module.exports = new Router()
   // match client-side routes that aren't a static asset
   // and serve the app shell. client-side router will
   // handle the route once it is rendered
-.match('/en:path*.html)', ({ appShell, cache }) => {
+.match('en/:path*.html)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
   })
