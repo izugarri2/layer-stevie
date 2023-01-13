@@ -25,12 +25,11 @@ module.exports = new Router()
   // and serve the app shell. client-side router will
   // handle the route once it is rendered
 
-.match('/en/:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
+.match('en/:path*en/:file([^\\.]+|)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
   })
 
-  
 // match other assets such as favicon, manifest.json, etc
   .match('/:path*', ({ serveStatic, cache }) => {
   
