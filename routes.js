@@ -31,9 +31,6 @@ module.exports = new Router()
    serveStatic('public/en:path*')
 })
 
-  .match('/:path*', ({ serveStatic, cache }) => {
   
-   serveStatic('public/:path*')
-})
   // send any unmatched request to serve the static index.html
   .fallback(({ serveStatic }) => serveStatic('public/404.html'))
