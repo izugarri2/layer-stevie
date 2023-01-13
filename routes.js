@@ -20,16 +20,16 @@ const edgeAndBrowser = {
 
 module.exports = new Router()
   .prerender([{ path: '/' }])
-
+  
   // match client-side routes that aren't a static asset
   // and serve the app shell. client-side router will
   // handle the route once it is rendered
 
  // match other assets such as favicon, manifest.json, etc
-.match('/en:path*', ({ serveStatic, cache }) => {
+
+  .match('/:path*', ({ serveStatic, cache }) => {
   
-   serveStatic('public/en:path*')
-})
+   serveStatic('public/:path*')
 
   
   // send any unmatched request to serve the static index.html
