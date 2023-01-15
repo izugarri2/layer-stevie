@@ -1,36 +1,36 @@
-// This file was added by layer0 init.
-// You should commit this file to source control.
+// routes.js
 
-const { Router } = require('@layer0/core/router')
+const { Router } = require('@edgio/core/router')
 
-const ONE_MIN = 5 * 5
-const ONE_HOUR = 60 * 60
-const ONE_DAY = 24 * ONE_HOUR
-const ONE_YEAR = 365 * ONE_DAY
+const ONE_YEAR = 365 * 24 * 60 * 60
 
 const edgeOnly = {
-
-  edge: { maxAgeSeconds: 3500 },
+  browser: false,
+  edge: { maxAgeSeconds: ONE_YEAR },
 }
 
 const edgeAndBrowser = {
+  browser: { maxAgeSeconds: ONE_YEAR },
+  edge: { maxAgeSeconds: ONE_YEAR },
+}
 
-  edge: { maxAgeSeconds: 3502 },
+const handler = ({ cache, serveStatic }, cacheConfig, path) => {
+  cache(cacheConfig)
+  serveStatic(path)
 }
 
 module.exports = new Router()
-  .prerender([{ path: '/' }])
-  
-  // match client-side routes that aren't a static asset
-  // and serve the app shell. client-side router will
-  // handle the route once it is rendered
 
- // match other assets such as favicon, manifest.json, etc
-
-  .match('/:path*', ({ serveStatic, cache }) => {
+.match('/en:path*', ({ serveStatic, cache }) => {
   
-   serveStatic('public/:path*')
-  })
+   serveStatic('public/en:path*')
+})
   
-  // send any unmatched request to serve the static index.html
-  .fallback(({ serveStatic }) => serveStatic('public/404.html'))
+  // Path(s) that do not have a "." as well as "/" to serve the fallback page
+  .get('/:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
+    cache(edgeOnly)
+    appShell('public/index.html')
+  }) 
+  
+  // All other paths to be served from the src directory
+  .get('/:path*', res => handler(res, edgeOnly, 'public/:path*'))
