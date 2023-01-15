@@ -6,28 +6,31 @@ const ONE_YEAR = 365 * 24 * 60 * 60
 
 const edgeOnly = {
   browser: false,
-  edge: false,
+  edge: { maxAgeSeconds: ONE_YEAR },
 }
 
 const edgeAndBrowser = {
-  browser: false,
-  edge: false,
+  browser: { maxAgeSeconds: ONE_YEAR },
+  edge: { maxAgeSeconds: ONE_YEAR },
 }
 
-const handler = ({ serveStatic }, path) => {
+const handler = ({ cache, serveStatic }, cacheConfig, path) => {
+  cache(cacheConfig)
   serveStatic(path)
 }
 
 module.exports = new Router()
 
-.get('/en/)', ({ appShell }) => {
+.get('/en/)', ({ appShell, cache }) => {
+    cache(edgeOnly)
     appShell('public/en/index.html')
   }) 
 
 
   
   // Path(s) that do not have a "." as well as "/" to serve the fallback page
-  .get('/)', ({ appShell }) => {
+  .get('/)', ({ appShell, cache }) => {
+    cache(edgeOnly)
     appShell('public/index.html')
   }) 
   
