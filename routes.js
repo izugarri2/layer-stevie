@@ -14,20 +14,21 @@ const edgeAndBrowser = {
   edge: false,
 }
 
-const handler = ({ serveStatic }, path) => {
+const handler = ({ cache, serveStatic }, cacheConfig, path) => {
+  cache(cacheConfig)
   serveStatic(path)
 }
 
 module.exports = new Router()
 
-.get('/en/)', ({ appShell }) => {
+.get('/en/)', ({ appShell, cache }) => {
+    cache(edgeOnly)
     appShell('public/en/index.html')
   }) 
 
-
-  
-  // Path(s) that do not have a "." as well as "/" to serve the fallback page
-  .get('/)', ({ appShell }) => {
+// Path(s) that do not have a "." as well as "/" to serve the fallback page
+  .get('/)', ({ appShell, cache }) => {
+    cache(edgeOnly)
     appShell('public/index.html')
   }) 
   
