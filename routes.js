@@ -36,3 +36,6 @@ module.exports = new Router()
   
   // All other paths to be served from the src directory
   .get('/:path*', res => handler(res, edgeOnly, 'public/:path*'))
+
+// send any unmatched request to serve the static 404.html
+  .fallback(({ serveStatic }) => serveStatic('public/404.html'))
