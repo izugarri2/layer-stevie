@@ -29,7 +29,7 @@ module.exports = new Router()
 
   
   // Path(s) that do not have a "." as well as "/" to serve the fallback page
-  .get('/:path*/:file([^\\.]+|)', ({ appShell, cache }) => {
+  .get('/)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/index.html')
   }) 
