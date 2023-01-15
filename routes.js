@@ -2,7 +2,7 @@
 
 const { Router } = require('@edgio/core/router')
 
-const ONE_YEAR = 365 * 24 * 60 * 60
+const ONE_YEAR = 1 * 24 * 60 * 60
 
 const edgeOnly = {
   browser: false,
