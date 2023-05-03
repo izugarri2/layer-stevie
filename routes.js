@@ -3,11 +3,6 @@
 const { Router } = require('@edgio/core/router')
 
 
-const handler = ({ cache, serveStatic }, cacheConfig, path) => {
-  cache(cacheConfig)
-  serveStatic(path)
-}
-
 
 module.exports = new Router()
 
