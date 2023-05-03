@@ -2,21 +2,11 @@
 
 const { Router } = require('@edgio/core/router')
 
-router.get('/Control/path', ({ cache }) => {
-  cache({
-    // Other options...
-    edge: {
-      // Other options...
-      forcePrivateCaching: true, // Force caching of `private` responses
-    },
-  })
-})
-
 const ONE_YEAR = 365 * 24 * 60 * 60
 const ONE_SEG = 0 * 0 * 0 * 0
 const edgeOnly = {
   browser: false,
-  edge: { maxAgeSeconds: ONE_SEG },
+  edge: { maxAgeSeconds: ONE_SEG, staleWhileRevalidateSeconds: 1 * 1, },
 }
 
 const edgeAndBrowser = {
