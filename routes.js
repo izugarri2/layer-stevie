@@ -2,6 +2,16 @@
 
 const { Router } = require('@edgio/core/router')
 
+router.get('/Control/path', ({ cache }) => {
+  cache({
+    // Other options...
+    edge: {
+      // Other options...
+      forcePrivateCaching: true, // Force caching of `private` responses
+    },
+  })
+})
+
 const ONE_YEAR = 365 * 24 * 60 * 60
 const ONE_SEG = 0 * 0 * 0 * 0
 const edgeOnly = {
@@ -22,13 +32,6 @@ const handler = ({ cache, serveStatic }, cacheConfig, path) => {
 
 module.exports = new Router()
 
-new Router().get('/Control/', ({ cache }) => {
-  cache({
-    edge: {
-      maxAgeSeconds: 60 * 60 * 24,
-    },
-  })
-})
 
 .get('/en/)', ({ appShell, cache }) => {
     cache(edgeOnly)
