@@ -3,7 +3,7 @@
 const { Router } = require('@edgio/core/router')
 
 const ONE_YEAR = 365 * 24 * 60 * 60
-const ONE_SEG = 365 * 24 * 60 * 1
+const ONE_SEG = 0 * 0 * 0 * 0
 const edgeOnly = {
   browser: false,
   edge: { maxAgeSeconds: ONE_SEG },
