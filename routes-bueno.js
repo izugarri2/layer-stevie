@@ -19,13 +19,6 @@ const handler = ({ cache, serveStatic }, cacheConfig, path) => {
   serveStatic(path)
 }
 
-new Router().get('/Control/', ({ cache }) => {
-  cache({
-    edge: {
-      maxAgeSeconds: 0 * 0 * 0,
-    },
-  })
-
 module.exports = new Router()
 
 .get('/en/)', ({ appShell, cache }) => {
