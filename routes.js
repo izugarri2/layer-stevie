@@ -3,9 +3,9 @@
 const { Router } = require('@edgio/core/router')
 
 const ONE_YEAR = 365 * 24 * 60 * 60
-
+const ONE_SEG = 365 * 24 * 60 * 1
 const edgeOnly = {
-  browser: false,
+  browser: 10,
   edge: { maxAgeSeconds: ONE_YEAR },
 }
 
@@ -22,10 +22,6 @@ const handler = ({ cache, serveStatic }, cacheConfig, path) => {
 
 module.exports = new Router()
 
-.get('/Control/)', ({ appShell, cache }) => {
-    cache(edgeAndBrowser)
-    
-  }) 
 
 .get('/en/)', ({ appShell, cache }) => {
     cache(edgeOnly)
