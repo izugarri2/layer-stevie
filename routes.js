@@ -22,6 +22,11 @@ const handler = ({ cache, serveStatic }, cacheConfig, path) => {
 
 module.exports = new Router()
 
+.get('/Control/)', ({ appShell, cache }) => {
+    cache(edgeAndBrowser)
+    
+  }) 
+
 .get('/en/)', ({ appShell, cache }) => {
     cache(edgeOnly)
     appShell('public/en/index.html')
