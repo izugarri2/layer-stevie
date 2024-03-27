@@ -1,55 +1,25 @@
-# Deploy React example to Edgio
+# Layer0 Express Example
 
-A demo deployment of React app to Edgio.
+A simple example of an Express app configured for deployment on [Layer0](https://www.layer0.co/).
 
-## Demo
+For more information on deploying Express apps to Layer0, see the [Express guide](https://docs.layer0.co/guides/express).
 
-https://layer0-docs-layer0-static-react-example-default.layer0-limelight.link
+## Setup
 
-## Try It Now
-
-[![Deploy with Edgio](https://docs.edg.io/button.svg)](https://app.layer0.co/deploy?repo=https://github.com/edgio-docs/edgio-static-react-example)
-
-## Getting Started
-
-### Clone This Repo
-
-Use `git clone https://github.com/edgio-docs/edgio-static-react-example.git` to get the files within this repository onto your local machine.
-
-### Install dependencies
-
-On the command line, in the project root directory, run the following command:
-
-```bash
+```
+git clone https://github.com/layer0-docs/layer0-express-example.git
 npm install
 ```
 
-### Run the React app locally on Edgio
+## Running Locally
 
-Run the React app with the command:
-
-```bash
-npm run edgio:dev
+```
+0 dev
 ```
 
-Load the site: http://127.0.0.1:3000
+## Deploying to Layer0
 
-### Testing production build locally with
-
-You can do a production build of your app and test it locally using:
-
-```bash
-npm run edgio:build && npm run edgio:production
+```
+0 deploy
 ```
 
-Setting --production runs your app exactly as it will be uploaded to the Edgio cloud using serverless-offline.
-
-## Deploying to Edgio
-
-Deploying requires an account on Edgio. [Sign up here for free](https://app.layer0.co/signup). Once you have an account, you can deploy to Edgio by running the following in the root folder of your project:
-
-```bash
-npm run edgio:deploy
-```
-
-See [deploying](https://docs.edg.io/guides/deploying) for more information.
